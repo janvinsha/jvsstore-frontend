@@ -78,7 +78,7 @@ const { loading, products, error ,page,pages}=productList
 {confirmSuccess&&<Message variant="success">Email confirmed successfully</Message>}
 {!keyword&&<ProductCarousel/>}
     {!keyword?<h2>Latest Products</h2>:<h2>Searched Products</h2>}
-    {products.length==0&&<CartMessage>No products found</CartMessage>}
+    {products&&products.length==0&&<CartMessage>No products found</CartMessage>}
       {loading ? (
         <Loader />
       ) : error ? (

@@ -1,4 +1,5 @@
-import axios from "axios"
+import axios from "axios";
+
 import {USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
@@ -47,11 +48,12 @@ import {USER_LOGIN_REQUEST,
 
 } from "../constants/userConstants"
 
+axios.defaults.withCredentials=true;
 export const login=(email,password)=>async(dispatch)=>{
 
     try {
         dispatch({ type: USER_LOGIN_REQUEST });
-        const config={headers:{'Content-Type':"application/json"}}
+        const config={headers:{'Content-Type':"application/json"}};
         const { data } = await axios.post("https://jvsstoreapi.herokuapp.com/api/v1/users/login",{email,password},config);
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data});
         localStorage.setItem('userInfo',JSON.stringify(data.data))

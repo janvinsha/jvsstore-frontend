@@ -37,7 +37,7 @@ dispatch(listTopProducts())
         <Slider {...settings}>
       
           {
-            products.map((product)=>(
+           products&&products.map((product)=>(
               <Link to={`/product/${product.id}`}>
             
               <Product>
