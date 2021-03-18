@@ -78,8 +78,8 @@ const Register = () => {
         <div class="text">
           <small
           >By continuing, you agree to Janvinsha Store's
-        <Link to="#"> Conditions of Use</Link> and
-        <Link to="#"> Privacy Notice.</Link></small><br />
+        <Link to="/privacy"> Conditions of Use</Link> and
+        <Link to="/privacy"> Privacy Notice.</Link></small><br />
           <button type="submit" class="mt-1"
           
           disabled={password.length <=8||passwordConfirm.length<=8||name.length===0||email.length===0||
