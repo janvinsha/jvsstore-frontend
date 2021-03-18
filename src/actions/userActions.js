@@ -52,7 +52,7 @@ export const login=(email,password)=>async(dispatch)=>{
     try {
         dispatch({ type: USER_LOGIN_REQUEST });
         const config={headers:{'Content-Type':"application/json"}}
-        const { data } = await axios.post("/api/v1/users/login",{email,password},config);
+        const { data } = await axios.post("https://jvsstoreapi.herokuapp.com/api/v1/users/login",{email,password},config);
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data});
         localStorage.setItem('userInfo',JSON.stringify(data.data))
       } catch (error) {
@@ -67,7 +67,7 @@ export const login=(email,password)=>async(dispatch)=>{
 }
 export const logout=()=>async(dispatch)=>{
   try{
-  await axios.get("/api/v1/users/logout");
+  await axios.get("https://jvsstoreapi.herokuapp.com/api/v1/users/logout");
   dispatch({type:USER_LOGOUT})
   localStorage.removeItem('userInfo')
  }
@@ -76,7 +76,7 @@ export const logout=()=>async(dispatch)=>{
 }
 export const getLoggedUserStatus=()=>async(dispatch)=>{
   try {
-    const { data } = await axios.get("/api/v1/users/loggedInUser");
+    const { data } = await axios.get("https://jvsstoreapi.herokuapp.com/api/v1/users/loggedInUser");
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem('userInfo',JSON.stringify(data.data))
   } catch (error) {
@@ -87,7 +87,7 @@ export const register=(name,email,password,passwordConfirm)=>async(dispatch)=>{
   try {
       dispatch({ type: USER_REGISTER_REQUEST });
       const config={headers:{'Content-Type':"application/json"}}
-      const { data } = await axios.post("/api/v1/users/register",{name,email,password,passwordConfirm},config);
+      const { data } = await axios.post("https://jvsstoreapi.herokuapp.com/api/v1/users/register",{name,email,password,passwordConfirm},config);
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
       localStorage.setItem('userInfo',JSON.stringify(data.data))
@@ -106,7 +106,7 @@ export const register=(name,email,password,passwordConfirm)=>async(dispatch)=>{
 export const getUserDetails=(id)=>async(dispatch)=>{
   try {
       dispatch({ type: USER_DETAILS_REQUEST });
-      const { data } = await axios.get(`/api/v1/users/${id}`);
+      const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/users/${id}`);
       dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -126,7 +126,7 @@ export const getUserDetails=(id)=>async(dispatch)=>{
          if(user.name) formData.append("name",user.name);
          if(user.email)formData.append("email",user.email);
          if (user.photo) formData.append("photo",user.photo);
-          const { data } = await axios.patch(`/api/v1/users/updateMe`,formData,config);
+          const { data } = await axios.patch(`https://jvsstoreapi.herokuapp.com/api/v1/users/updateMe`,formData,config);
           dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
         } catch (error) {
           dispatch({
@@ -142,7 +142,7 @@ export const getUserDetails=(id)=>async(dispatch)=>{
           try {
               dispatch({ type: USER_UPDATE_PROFILE_REQUEST });
               const config={headers:{'Content-Type':"application/json"}}
-              const { data } = await axios.patch("/api/v1/users/updateMyPassword",user,config);
+              const { data } = await axios.patch("https://jvsstoreapi.herokuapp.com/api/v1/users/updateMyPassword",user,config);
               dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
             } catch (error) {
               dispatch({
@@ -157,7 +157,7 @@ export const getUserDetails=(id)=>async(dispatch)=>{
             export const listUsers=(pageNumber)=>async(dispatch)=>{
               try {
                   dispatch({ type: USER_LIST_REQUEST });
-                  const { data } = await axios.get(`/api/v1/users/?page=${pageNumber}`);
+                  const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/users/?page=${pageNumber}`);
                   dispatch({ type: USER_LIST_SUCCESS, payload: data });
                 } catch (error) {
                   dispatch({
@@ -171,7 +171,7 @@ export const getUserDetails=(id)=>async(dispatch)=>{
                 export const deleteUser=(id)=>async(dispatch)=>{
                   try {
                       dispatch({ type: USER_DELETE_REQUEST });
-                       await axios.delete(`/api/v1/users/${id}`);
+                       await axios.delete(`https://jvsstoreapi.herokuapp.com/api/v1/users/${id}`);
                       dispatch({ type: USER_DELETE_SUCCESS });
                     } catch (error) {
                       dispatch({
@@ -188,7 +188,7 @@ export const updateUser=(user,id)=>async(dispatch)=>{
  try {
   dispatch({ type: USER_UPDATE_REQUEST });
  const config={headers:{'Content-Type':"application/json"}}
- const { data } = await axios.patch(`/api/v1/users/${id}`,user,config);
+ const { data } = await axios.patch(`https://jvsstoreapi.herokuapp.com/api/v1/users/${id}`,user,config);
 dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
 } catch (error) {
    dispatch({
@@ -204,7 +204,7 @@ export const forgotPassword=(email)=>async(dispatch)=>{
   try {
    dispatch({ type: USER_FORGOT_PASSWORD_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
-  await axios.post(`/api/v1/users/forgotPassword`,email,config);
+  await axios.post(`https://jvsstoreapi.herokuapp.com/api/v1/users/forgotPassword`,email,config);
  dispatch({ type: USER_FORGOT_PASSWORD_SUCCESS });
  } catch (error) {
     dispatch({
@@ -220,7 +220,7 @@ export const forgotPassword=(email)=>async(dispatch)=>{
   try {
    dispatch({ type: USER_RESET_PASSWORD_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
-  await axios.patch(`/api/v1/users/resetPassword/${resetToken}`,passwords,config);
+  await axios.patch(`https://jvsstoreapi.herokuapp.com/api/v1/users/resetPassword/${resetToken}`,passwords,config);
  dispatch({ type: USER_RESET_PASSWORD_SUCCESS });
  } catch (error) {
     dispatch({
@@ -237,7 +237,7 @@ export const forgotPassword=(email)=>async(dispatch)=>{
   try {
    dispatch({ type: USER_CONFIRM_EMAIL_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
-  await axios.post(`/api/v1/users/confirmEmail/${confirmToken}`,config);
+  await axios.post(`https://jvsstoreapi.herokuapp.com/api/v1/users/confirmEmail/${confirmToken}`,config);
  dispatch({ type: USER_CONFIRM_EMAIL_SUCCESS });
  } catch (error) {
     dispatch({
@@ -253,7 +253,7 @@ export const forgotPassword=(email)=>async(dispatch)=>{
   try {
    dispatch({ type: USER_RESEND_CONFIRM_EMAIL_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
-  await axios.post(`/api/v1/users/resendConfirmEmail/`,config);
+  await axios.post(`https://jvsstoreapi.herokuapp.com/api/v1/users/resendConfirmEmail/`,config);
  dispatch({ type: USER_RESEND_CONFIRM_EMAIL_SUCCESS });
  } catch (error) {
     dispatch({

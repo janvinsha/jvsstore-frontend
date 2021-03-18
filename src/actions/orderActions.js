@@ -19,7 +19,7 @@ export const createOrder=(order)=>async(dispatch)=>{
     try {
       dispatch({ type: ORDER_CREATE_REQUEST });
       const config={headers:{'Content-Type':"application/json"}}
-      const { data } = await axios.post(`/api/v1/orders/`,order,config);
+      const { data } = await axios.post(`https://jvsstoreapi.herokuapp.com/api/v1/orders/`,order,config);
       dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -34,7 +34,7 @@ export const createOrder=(order)=>async(dispatch)=>{
   export const getOrderDetails=(id)=>async(dispatch)=>{
     try {
       dispatch({ type: ORDER_DETAILS_REQUEST });
-      const { data } = await axios.get(`/api/v1/orders/${id}`);
+      const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/orders/${id}`);
       dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -50,7 +50,7 @@ export const createOrder=(order)=>async(dispatch)=>{
     try {
       dispatch({ type: ORDER_PAY_REQUEST });
       const config={headers:{'Content-Type':"application/json"}}
-      const { data } = await axios.patch(`/api/v1/orders/${orderId}/pay`,config);
+      const { data } = await axios.patch(`https://jvsstoreapi.herokuapp.com/api/v1/orders/${orderId}/pay`,config);
       dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -66,7 +66,7 @@ export const createOrder=(order)=>async(dispatch)=>{
   export const listOrders = (pageNumber) => async (dispatch) => {
     try {
       dispatch({ type: ORDER_LIST_REQUEST });
-      const { data } = await axios.get(`/api/v1/orders/?page=${pageNumber}`);
+      const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/orders/?page=${pageNumber}`);
       dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
@@ -83,7 +83,7 @@ export const createOrder=(order)=>async(dispatch)=>{
     try {
       dispatch({ type: ORDER_DELIVER_REQUEST });
       const config={headers:{'Content-Type':"application/json"}}
-      const { data } = await axios.patch(`/api/v1/orders/${orderId}/deliver`,config);
+      const { data } = await axios.patch(`https://jvsstoreapi.herokuapp.com/api/v1/orders/${orderId}/deliver`,config);
       dispatch({ type: ORDER_DELIVER_SUCCESS, payload: data });
     } catch (error) {
       dispatch({

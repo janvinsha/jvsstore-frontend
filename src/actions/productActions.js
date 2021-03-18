@@ -39,10 +39,10 @@ export const listProducts = (keyword="",category="",pageNumber) => async (dispat
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     if(category=="all"||category=="")
-    {  const { data } = await axios.get(`/api/v1/products/?keyword=${keyword}&page=${pageNumber}`);
+    {  const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/products/?keyword=${keyword}&page=${pageNumber}`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   }
-   else{ const { data } = await axios.get(`/api/v1/products/?keyword=${keyword}&category=${category}&page=${pageNumber}`);
+   else{ const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/products/?keyword=${keyword}&category=${category}&page=${pageNumber}`);
    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   }
    
@@ -59,7 +59,7 @@ export const listProducts = (keyword="",category="",pageNumber) => async (dispat
 export const listProductDetails=(id)=>async(dispatch)=>{
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/v1/products/${id}`);
+    const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/products/${id}`);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -77,7 +77,7 @@ export const deleteProduct=(id)=>async(dispatch)=>{
   try {
    dispatch({ type: PRODUCT_DELETE_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
-   await axios.delete(`/api/v1/products/${id}`,config);
+   await axios.delete(`https://jvsstoreapi.herokuapp.com/api/v1/products/${id}`,config);
  dispatch({ type: PRODUCT_DELETE_SUCCESS});
  } catch (error) {
     dispatch({
@@ -102,7 +102,7 @@ formData.append("price",product.price);
 formData.append("category",product.category);
 formData.append("image",product.image);
 product.images.map((product)=>(formData.append("images",product)))
- const {data}=  await axios.post(`/api/v1/products/`,formData,config);
+ const {data}=  await axios.post(`https://jvsstoreapi.herokuapp.com/api/v1/products/`,formData,config);
  dispatch({ type: PRODUCT_CREATE_SUCCESS,payload:data});
  } catch (error) {
     dispatch({
@@ -126,7 +126,7 @@ if(product.price)formData.append("price",product.price);
 if(product.category)formData.append("category",product.category);
 if(!(Object.entries(product.image).length === 0))formData.append("image",product.image);
 if(product.images)product.images.map((product)=>(formData.append("images",product)))
- const {data}=  await axios.patch(`/api/v1/products/${id}`,formData,config);
+ const {data}=  await axios.patch(`https://jvsstoreapi.herokuapp.com/api/v1/products/${id}`,formData,config);
  dispatch({ type: PRODUCT_UPDATE_SUCCESS,payload:data});
  } catch (error) {
     dispatch({
@@ -143,7 +143,7 @@ if(product.images)product.images.map((product)=>(formData.append("images",produc
   try {
    dispatch({ type: PRODUCT_CREATE_REVIEW_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
- const {data}=  await axios.post(`/api/v1/products/${productId}/reviews`,review,config);
+ const {data}=  await axios.post(`https://jvsstoreapi.herokuapp.com/api/v1/products/${productId}/reviews`,review,config);
  dispatch({ type: PRODUCT_CREATE_REVIEW_SUCCESS,payload:data});
  } catch (error) {
     dispatch({
@@ -160,7 +160,7 @@ if(product.images)product.images.map((product)=>(formData.append("images",produc
   try {
    dispatch({ type: PRODUCT_DELETE_REVIEW_REQUEST });
   const config={headers:{'Content-Type':"application/json"}}
- const {data}=  await axios.delete(`/api/v1/reviews/${reviewId}/`,config);
+ const {data}=  await axios.delete(`https://jvsstoreapi.herokuapp.com/api/v1/reviews/${reviewId}/`,config);
  dispatch({ type: PRODUCT_DELETE_REVIEW_SUCCESS,payload:data});
  } catch (error) {
     dispatch({
@@ -175,7 +175,7 @@ if(product.images)product.images.map((product)=>(formData.append("images",produc
  export const listTopProducts = () => async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_TOP_REQUEST });
-    const { data } = await axios.get(`/api/v1/products/top-3-products/`);
+    const { data } = await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/products/top-3-products/`);
      dispatch({ type: PRODUCT_TOP_SUCCESS, payload: data });
     } catch (error) {
       dispatch({

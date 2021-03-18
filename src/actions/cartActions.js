@@ -4,7 +4,7 @@ CART_ADD_ITEM,CART_REMOVE_ITEM,CART_SAVE_SHIPPING_ADDRESS,CART_SAVE_PAYMENT_METH
 } from "../constants/cartConstants";
 
 export const addToCart=(id,qty)=>async(dispatch,getState)=>{
-const {data}=await axios.get(`/api/v1/products/${id}`)
+const {data}=await axios.get(`https://jvsstoreapi.herokuapp.com/api/v1/products/${id}`)
 dispatch({
     type:CART_ADD_ITEM,
     payload:{
