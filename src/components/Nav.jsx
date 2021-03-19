@@ -303,7 +303,6 @@ const StyledNav = styled.div`
     flex-flow: row wrap;
     align-items: center;
     background-color: #1c2b2d;
-    min-height: 8vh;
     width:100%;
    
     @media screen and (max-width: 900px) {display:none}
@@ -406,7 +405,7 @@ const StyledNav = styled.div`
           right: 0;
           background-color: white;
           z-index: 1;
-          margin-right: -1rem;
+          margin: 0rem;
           transition: 1s ease-in-out;
           display: none;
           cursor: pointer;
@@ -415,7 +414,7 @@ const StyledNav = styled.div`
             color: black;
             padding: 0.6rem 0rem 0.6rem 0.6rem;
             font-size: 0.9rem;
-            width: 12rem;
+            width: 10rem;
             &:hover {
               color: #3f3434;
             }

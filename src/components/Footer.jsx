@@ -16,7 +16,7 @@ const StyledFooter = styled(motion.div)`
   background-color: #1c2b2d;
   color: white;
   margin-top: 1rem;
-  min-height: 8vh;
+ 
   @media screen and (max-width: 900px) {
       font-size:01rem;
       margin-top: 0rem;
