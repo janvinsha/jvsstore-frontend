@@ -57,6 +57,11 @@ export const login=(email,password)=>async(dispatch)=>{
         const { data } = await axios.post("https://jvsstoreapi.herokuapp.com/api/v1/users/login",{email,password},config);
         dispatch({ type: USER_LOGIN_SUCCESS, payload: data});
         localStorage.setItem('userInfo',JSON.stringify(data.data))
+        cookies.set('jwt', data.token, {
+          expires: new Date(
+            Date.now() + 90 * 24 * 60 * 60 * 1000
+          ),
+        });
       } catch (error) {
         dispatch({
           type: USER_LOGIN_FAIL,
@@ -93,6 +98,11 @@ export const register=(name,email,password,passwordConfirm)=>async(dispatch)=>{
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
       dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
       localStorage.setItem('userInfo',JSON.stringify(data.data))
+      cookies.set('jwt', data.token, {
+        expires: new Date(
+          Date.now() + 90 * 24 * 60 * 60 * 1000
+        ),
+      });
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
