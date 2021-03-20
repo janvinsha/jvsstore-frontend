@@ -143,7 +143,7 @@ const uploadFileHandler2=async(e)=>{
             ||
             Object.entries(image).length<1
             ||
-          images.length<3
+          images.length<1
           }
          
             >Create</button>
