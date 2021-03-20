@@ -18,6 +18,7 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "../animations";
 
 import Meta from "../components/Meta";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
 
 const AdminProductCreate = () => {
@@ -46,6 +47,7 @@ useEffect(()=>{
     history.push("/")
   }else if(success){
 setTimeout(() => {
+  dispatch({type:PRODUCT_CREATE_RESET})
   history.push("/admin/productlist")
 }, 2000)
   }
